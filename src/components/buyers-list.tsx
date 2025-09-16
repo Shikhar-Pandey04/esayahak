@@ -155,7 +155,7 @@ export function BuyersList({ searchParams }: { searchParams: SearchParams }) {
             placeholder="Search by name, phone, or email..."
             value={filters.search}
             onChange={(e) => setFilters(prev => ({ ...prev, search: e.target.value }))}
-            className="flex-1 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+            className="flex-1 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-gray-900"
           />
           <button
             type="submit"
@@ -169,7 +169,7 @@ export function BuyersList({ searchParams }: { searchParams: SearchParams }) {
           <select
             value={filters.city}
             onChange={(e) => handleFilterChange('city', e.target.value)}
-            className="rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+            className="rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-gray-900"
           >
             <option value="">All Cities</option>
             <option value="Chandigarh">Chandigarh</option>
@@ -182,7 +182,7 @@ export function BuyersList({ searchParams }: { searchParams: SearchParams }) {
           <select
             value={filters.propertyType}
             onChange={(e) => handleFilterChange('propertyType', e.target.value)}
-            className="rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+            className="rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-gray-900"
           >
             <option value="">All Property Types</option>
             <option value="Apartment">Apartment</option>
@@ -195,7 +195,7 @@ export function BuyersList({ searchParams }: { searchParams: SearchParams }) {
           <select
             value={filters.status}
             onChange={(e) => handleFilterChange('status', e.target.value)}
-            className="rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+            className="rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-gray-900"
           >
             <option value="">All Statuses</option>
             <option value="New">New</option>
@@ -210,7 +210,7 @@ export function BuyersList({ searchParams }: { searchParams: SearchParams }) {
           <select
             value={filters.timeline}
             onChange={(e) => handleFilterChange('timeline', e.target.value)}
-            className="rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+            className="rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-gray-900"
           >
             <option value="">All Timelines</option>
             <option value="0-3m">0-3 months</option>

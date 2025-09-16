@@ -112,7 +112,7 @@ export function BuyerForm({ initialData, isEditing = false, buyerId, updatedAt }
             name="fullName"
             value={formData.fullName}
             onChange={handleInputChange}
-            className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 ${
+            className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-gray-900 ${
               errors.fullName ? 'border-red-300' : ''
             }`}
             required
@@ -135,7 +135,7 @@ export function BuyerForm({ initialData, isEditing = false, buyerId, updatedAt }
             id="email"
             value={formData.email}
             onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-gray-900"
           />
           {errors.email && <p className="mt-1 text-sm text-red-600">{errors.email}</p>}
         </div>
@@ -149,7 +149,7 @@ export function BuyerForm({ initialData, isEditing = false, buyerId, updatedAt }
             id="phone"
             value={formData.phone}
             onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-gray-900"
             required
           />
           {errors.phone && <p className="mt-1 text-sm text-red-600">{errors.phone}</p>}
@@ -163,7 +163,7 @@ export function BuyerForm({ initialData, isEditing = false, buyerId, updatedAt }
             id="city"
             value={formData.city}
             onChange={(e) => setFormData(prev => ({ ...prev, city: e.target.value as any }))}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-gray-900"
             required
           >
             <option value="Chandigarh">Chandigarh</option>
@@ -183,7 +183,7 @@ export function BuyerForm({ initialData, isEditing = false, buyerId, updatedAt }
             id="propertyType"
             value={formData.propertyType}
             onChange={(e) => setFormData(prev => ({ ...prev, propertyType: e.target.value as any }))}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-gray-900"
             required
           >
             <option value="Apartment">Apartment</option>
@@ -203,8 +203,8 @@ export function BuyerForm({ initialData, isEditing = false, buyerId, updatedAt }
             <select
               id="bhk"
               value={formData.bhk || ''}
-              onChange={(e) => setFormData(prev => ({ ...prev, bhk: e.target.value as any }))}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              onChange={(e) => setFormData(prev => ({ ...prev, bhk: e.target.value === 'Studio' ? 'Studio' : (e.target.value ? parseInt(e.target.value) : undefined) }))}
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-gray-900"
               required
             >
               <option value="">Select BHK</option>
@@ -226,7 +226,7 @@ export function BuyerForm({ initialData, isEditing = false, buyerId, updatedAt }
             id="purpose"
             value={formData.purpose}
             onChange={(e) => setFormData(prev => ({ ...prev, purpose: e.target.value as any }))}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-gray-900"
             required
           >
             <option value="Buy">Buy</option>
@@ -244,7 +244,7 @@ export function BuyerForm({ initialData, isEditing = false, buyerId, updatedAt }
             id="budgetMin"
             value={formData.budgetMin || ''}
             onChange={(e) => setFormData(prev => ({ ...prev, budgetMin: e.target.value ? parseInt(e.target.value) : undefined }))}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-gray-900"
           />
           {errors.budgetMin && <p className="mt-1 text-sm text-red-600">{errors.budgetMin}</p>}
         </div>
@@ -258,7 +258,7 @@ export function BuyerForm({ initialData, isEditing = false, buyerId, updatedAt }
             id="budgetMax"
             value={formData.budgetMax || ''}
             onChange={(e) => setFormData(prev => ({ ...prev, budgetMax: e.target.value ? parseInt(e.target.value) : undefined }))}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-gray-900"
           />
           {errors.budgetMax && <p className="mt-1 text-sm text-red-600">{errors.budgetMax}</p>}
         </div>
@@ -271,12 +271,12 @@ export function BuyerForm({ initialData, isEditing = false, buyerId, updatedAt }
             id="timeline"
             value={formData.timeline}
             onChange={(e) => setFormData(prev => ({ ...prev, timeline: e.target.value as any }))}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-gray-900"
             required
           >
-            <option value="0-3m">0-3 months</option>
-            <option value="3-6m">3-6 months</option>
-            <option value=">6m">&gt;6 months</option>
+            <option value="Within 3 months">Within 3 months</option>
+            <option value="Within 6 months">Within 6 months</option>
+            <option value="After 6 months">After 6 months</option>
             <option value="Exploring">Exploring</option>
           </select>
           {errors.timeline && <p className="mt-1 text-sm text-red-600">{errors.timeline}</p>}
@@ -290,7 +290,7 @@ export function BuyerForm({ initialData, isEditing = false, buyerId, updatedAt }
             id="source"
             value={formData.source}
             onChange={(e) => setFormData(prev => ({ ...prev, source: e.target.value as any }))}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-gray-900"
             required
           >
             <option value="Website">Website</option>
@@ -310,16 +310,16 @@ export function BuyerForm({ initialData, isEditing = false, buyerId, updatedAt }
             id="status"
             value={formData.status}
             onChange={(e) => setFormData(prev => ({ ...prev, status: e.target.value as any }))}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-gray-900"
             required
           >
             <option value="New">New</option>
-            <option value="Qualified">Qualified</option>
             <option value="Contacted">Contacted</option>
-            <option value="Visited">Visited</option>
+            <option value="Qualified">Qualified</option>
+            <option value="Proposal Sent">Proposal Sent</option>
             <option value="Negotiation">Negotiation</option>
-            <option value="Converted">Converted</option>
-            <option value="Dropped">Dropped</option>
+            <option value="Closed Won">Closed Won</option>
+            <option value="Closed Lost">Closed Lost</option>
           </select>
           {errors.status && <p className="mt-1 text-sm text-red-600">{errors.status}</p>}
         </div>
@@ -334,7 +334,7 @@ export function BuyerForm({ initialData, isEditing = false, buyerId, updatedAt }
           rows={3}
           value={formData.notes}
           onChange={(e) => setFormData(prev => ({ ...prev, notes: e.target.value }))}
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-gray-900"
           maxLength={1000}
         />
         {errors.notes && <p className="mt-1 text-sm text-red-600">{errors.notes}</p>}
@@ -349,7 +349,7 @@ export function BuyerForm({ initialData, isEditing = false, buyerId, updatedAt }
           id="tags"
           value={formData.tags || ''}
           onChange={(e) => handleTagsChange(e.target.value)}
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-gray-900"
           placeholder="urgent, premium, referral"
         />
         {errors.tags && <p className="mt-1 text-sm text-red-600">{errors.tags}</p>}

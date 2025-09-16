@@ -2,8 +2,81 @@ import { db, type Buyer, type BuyerHistory } from './index';
 import type { BuyerFilter } from '../validations/buyer';
 
 export async function createBuyer(data: Omit<Buyer, 'id' | 'createdAt' | 'updatedAt' | 'ownerId'>, userId: string) {
+  // Map form values to Prisma enum constants
+  const cityMap: Record<string, string> = {
+    'Mumbai': 'MUMBAI',
+    'Delhi': 'DELHI', 
+    'Bangalore': 'BANGALORE',
+    'Chennai': 'CHENNAI',
+    'Hyderabad': 'HYDERABAD',
+    'Pune': 'PUNE',
+    'Kolkata': 'KOLKATA',
+    'Ahmedabad': 'AHMEDABAD',
+    'Chandigarh': 'CHANDIGARH',
+    'Mohali': 'MOHALI',
+    'Zirakpur': 'ZIRAKPUR',
+    'Panchkula': 'PANCHKULA',
+    'Other': 'OTHER'
+  };
+
+  const propertyTypeMap: Record<string, string> = {
+    'Apartment': 'APARTMENT',
+    'Villa': 'VILLA',
+    'Plot': 'PLOT',
+    'Office': 'OFFICE',
+    'Retail': 'RETAIL'
+  };
+
+  const bhkMap: Record<string | number, string> = {
+    1: 'ONE', 2: 'TWO', 3: 'THREE', 4: 'FOUR', 5: 'FIVE',
+    6: 'SIX', 7: 'SEVEN', 8: 'EIGHT', 9: 'NINE', 10: 'TEN'
+  };
+
+  const purposeMap: Record<string, string> = {
+    'Buy': 'BUY',
+    'Rent': 'RENT'
+  };
+
+  const timelineMap: Record<string, string> = {
+    'Within 3 months': 'WITHIN_3_MONTHS',
+    'Within 6 months': 'WITHIN_6_MONTHS', 
+    'After 6 months': 'AFTER_6_MONTHS',
+    'Exploring': 'EXPLORING'
+  };
+
+  const sourceMap: Record<string, string> = {
+    'Website': 'WEBSITE',
+    'Referral': 'REFERRAL',
+    'Walk-in': 'WALK_IN',
+    'Call': 'CALL',
+    'Other': 'OTHER'
+  };
+
+  const statusMap: Record<string, string> = {
+    'New': 'NEW',
+    'Contacted': 'CONTACTED',
+    'Qualified': 'QUALIFIED',
+    'Proposal Sent': 'PROPOSAL_SENT',
+    'Negotiation': 'NEGOTIATION',
+    'Closed Won': 'CLOSED_WON',
+    'Closed Lost': 'CLOSED_LOST'
+  };
+
   const buyer = await db.buyers.create({
-    ...data,
+    fullName: data.fullName,
+    email: data.email,
+    phone: data.phone,
+    city: cityMap[data.city as string] as any,
+    propertyType: propertyTypeMap[data.propertyType as string] as any,
+    bhk: data.bhk ? bhkMap[data.bhk] as any : undefined,
+    purpose: purposeMap[data.purpose as string] as any,
+    budgetMin: data.budgetMin,
+    budgetMax: data.budgetMax,
+    timeline: timelineMap[data.timeline as string] as any,
+    source: sourceMap[data.source as string] as any,
+    status: statusMap[data.status as string || 'New'] as any,
+    notes: data.notes,
+    tags: data.tags,
     ownerId: userId,
   });
 

@@ -3,7 +3,7 @@ import { z } from 'zod';
 // Enums
 export const cityEnum = z.enum(['Mumbai', 'Delhi', 'Bangalore', 'Chennai', 'Hyderabad', 'Pune', 'Kolkata', 'Ahmedabad', 'Chandigarh', 'Mohali', 'Zirakpur', 'Panchkula', 'Other']);
 export const propertyTypeEnum = z.enum(['Apartment', 'Villa', 'Plot', 'Office', 'Retail']);
-export const bhkEnum = z.coerce.number().int().min(1).max(10);
+export const bhkEnum = z.union([z.coerce.number().int().min(1).max(10), z.literal('Studio')]);
 export const purposeEnum = z.enum(['Buy', 'Rent']);
 export const timelineEnum = z.enum(['Within 3 months', 'Within 6 months', 'After 6 months', 'Exploring']);
 export const sourceEnum = z.enum(['Website', 'Referral', 'Walk-in', 'Call', 'Other']);
@@ -41,7 +41,7 @@ export const buyerSchema = z.object({
   tags: z.string().optional(),
 }).refine((data) => {
   // BHK is required for Apartment and Villa
-  if (['Apartment', 'Villa'].includes(data.propertyType) && (!data.bhk || data.bhk < 1)) {
+  if (['Apartment', 'Villa'].includes(data.propertyType) && (!data.bhk || (typeof data.bhk === 'number' && data.bhk < 1))) {
     return false;
   }
   return true;
